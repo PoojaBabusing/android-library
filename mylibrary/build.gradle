@@ -31,8 +31,20 @@ android {
     }
 }
 
-dependencies {
+project.afterEvaluate {
+    publishing {
+        publications {
+            libraryProject(MavenPublication) {
+                setGroupId 'com.android-test'
+                setArtifactId 'android-library-release'
+                version '1.0'
+                artifact bundleReleaseAar
+            }
+        }
+    }
+}
 
+dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     testImplementation 'junit:junit:4.13.2'
